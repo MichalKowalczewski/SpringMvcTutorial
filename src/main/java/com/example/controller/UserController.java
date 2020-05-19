@@ -38,7 +38,7 @@ public class UserController {
         return "post";
     }
 
-    @RequestMapping(value = "/go", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String postAction(User user){
             System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
             return "index";
