@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/sda")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
