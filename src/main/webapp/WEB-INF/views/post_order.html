@@ -19,29 +19,27 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th> First Name </th>
-            <th> Last Name </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${user != null}">
-            <td><span th:text="${user.firstName}">First Name</span></td>
-            <td><span th:text="${user.lastName}">Last Name</span></td>
-        </tr>
-        <tr th:unless="${user == null}" th:each="user : ${users}" th:object="${user}">
-            <td><span th:text="*{firstName}">First Name</span></td>
-            <td><span th:text="*{lastName}">Last Name</span></td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="post" class="btn btn-success">Post Example</a>
 
 
-</div>
+<form action="#" th:action="@{save}" method="post" th:object="${order}">
+    <div class="form-group">
+        <input class="form-control" placeholder="Provide Title" th:field="*{title}" />
+        <br/>
+        <input class="form-control" placeholder="Provide price" th:field="*{price}" />
+        <br/>
+        <!--Thymeleaf zwraca nam tu toString() tak więc musimy posiłkować się ID w tym przypadku-->
+        <select th:object="${user}" class="form-control" th:name="id">
+            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstName} +' '+ ${user.lastName}">
+            </option>
+        </select>
+        <br/>
+        <input type="submit" class="btn btn-success" id="submitButton" th:value="Save">
+    </div>
+</form>
+
+
+
+
 
 </body>
 </html>

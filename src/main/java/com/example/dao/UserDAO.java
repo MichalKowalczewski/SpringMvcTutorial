@@ -14,13 +14,17 @@ public class UserDAO {
 
     @PostConstruct
     public void init(){
-        users.add(new User("Jan", "Nowak"));
-        users.add(new User("Stefan", "Kowalski"));
-        users.add(new User("Maria", "Skłodowska"));
-        users.add(new User("Przykladowy", "Uzytkownik"));
+        users.add(new User(0,"Jan", "Nowak"));
+        users.add(new User(1,"Stefan", "Kowalski"));
+        users.add(new User(2,"Maria", "Skłodowska"));
+        users.add(new User(3,"Przykladowy", "Uzytkownik"));
     }
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public User getUserById(int id){
+        return users.get(id);
     }
 }
