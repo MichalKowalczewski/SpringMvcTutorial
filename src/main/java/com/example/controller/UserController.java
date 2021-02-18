@@ -5,10 +5,8 @@ import com.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/user")
@@ -43,10 +41,16 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    public String deleteUser(@RequestParam("deleteButton") int id, Model model){
+    public String deleteUser(@RequestParam("deleteButton") int id, Model model) {
         userDAO.removeUserById(id);
         model.addAttribute("users", userDAO.getUsers());
         return "index";
+    }
+
+    @PostMapping("/edit")
+    public String editUser(@RequestParam("editUserId") int id, Model model) {
+        model.addAttribute("user", userDAO.getUserById(id));
+        return "post";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -54,6 +58,16 @@ public class UserController {
             System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
             userDAO.addUser(user);
             return "index";
+
+    }
+
+    @RequestMapping(value = "/edited", method = RequestMethod.POST)
+    public String postEdit(User user, Model model){
+        System.out.println("Edited User: " + user.getFirstName() + " " + user.getLastName());
+        userDAO.getUsers().put(user.getId(), user);
+        model.addAttribute("user", null);
+        model.addAttribute("users", userDAO.getUsers());
+        return "index";
 
     }
 }
