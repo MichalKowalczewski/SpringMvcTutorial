@@ -5,27 +5,29 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class UserDAO {
 
-    private List<User> users = new ArrayList<User>();
+    private Map<Integer, User> users = new HashMap<>();
 
     @PostConstruct
     public void init(){
-        users.add(new User(1,"Jan", "Nowak"));
-        users.add(new User(2,"Stefan", "Kowalski"));
-        users.add(new User(3,"Maria", "Skłodowska"));
-        users.add(new User(4,"Przykladowy", "Uzytkownik"));
+        users.put(1,new User(1,"Jan", "Nowak"));
+        users.put(2,new User(2,"Stefan", "Kowalski"));
+        users.put(3,new User(3,"Maria", "Skłodowska"));
+        users.put(4,new User(4,"Przykladowy", "Uzytkownik"));
     }
 
-    public List<User> getUsers() {
+    public Map<Integer, User> getUsers() {
         return users;
     }
 
     public void addUser(User user) {
-        users.add(user);
+        users.put(user.getId(), user);
     }
 
     public User getUserById(int id) {return users.get(id);}

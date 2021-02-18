@@ -31,13 +31,13 @@
             </thead>
             <tbody>
             <tr th:if="${user != null}">
-                <td><span th:text="${user.firstName}">First Name</span></td>
-                <td><span th:text="${user.lastName}">Last Name</span></td>
+                <td><span th:text="${user.value.firstName}">First Name</span></td>
+                <td><span th:text="${user.value.lastName}">Last Name</span></td>
             </tr>
             <tr th:unless="${user == null}" th:each="user : ${users}">
-                <td><span th:text="${user.firstName}">First Name</span></td>
-                <td><span th:text="${user.lastName}">Last Name</span></td>
-                <td><button th:type="submit" class="btn btn-success" th:name="deleteButton" th:value="${user.id}">Delete</button></td>
+                <td><span th:text="${user.value.firstName}">First Name</span></td>
+                <td><span th:text="${user.value.lastName}">Last Name</span></td>
+                <td><button th:type="submit" class="btn btn-success" th:name="deleteButton" th:value="${user.value.id}">Delete</button></td>
             </tr>
             </tbody>
         </table>
