@@ -12,6 +12,8 @@ public class User {
 
     private String lastName;
 
+    private String email;
+
     public User() {
     }
 
@@ -20,10 +22,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public User(int id, String firstName, String lastName) {
+    public User(int id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -48,5 +51,13 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

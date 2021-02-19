@@ -52,7 +52,7 @@ public class UserController {
     @PostMapping("/edit")
     public String editUser(@RequestParam("editUserId") int id, Model model) {
         model.addAttribute("user", userDAO.getUserById(id));
-        return "post";
+        return "details";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)

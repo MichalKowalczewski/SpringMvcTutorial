@@ -16,10 +16,10 @@ public class UserDAO {
 
     @PostConstruct
     public void init(){
-        users.put(1, new User(1,"Jan", "Nowak"));
-        users.put(2, new User(2,"Stefan", "Kowalski"));
-        users.put(3, new User(3,"Maria", "Sklodowska"));
-        users.put(4, new User(4,"Przykladowy", "Uzytkownik"));
+        users.put(1, new User(1,"Jan", "Nowak", "mn@wp.pl"));
+        users.put(2, new User(2,"Stefan", "Kowalski", "sk@gmail.com"));
+        users.put(3, new User(3,"Maria", "Sklodowska", "ms@onet.pl"));
+        users.put(4, new User(4,"Przykladowy", "Uzytkownik", "pu@yahoo.com"));
     }
 
     public Map<Integer, User> getUsers() {

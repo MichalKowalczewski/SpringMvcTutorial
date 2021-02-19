@@ -1,24 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-
-    <title>Spring MVC CRUD</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
-
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-    <link href="../static/css/spring-core.css"
-          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
 <body>
+
+<div id="page" layout:fragment="content">
 <div class="container">
 
 
@@ -27,16 +13,19 @@
         <tr>
             <th><span th:text="#{label.firstName}">First Name</span>  </th>
             <th><span th:text="#{label.lastName}">Last Name</span></th>
+            <th><span th:text="#{label.email}">Last Name</span></th>
         </tr>
         </thead>
         <tbody>
         <tr th:if="${user != null}">
             <td><span th:text="${user.firstName}">First Name</span></td>
             <td><span th:text="${user.lastName}">Last Name</span></td>
+            <td><span th:text="${user.email}">Last Name</span></td>
         </tr>
         <tr th:unless="${user == null}" th:each="user : ${users}">
             <td><span th:text="${user.value.firstName}">First Name</span></td>
             <td><span th:text="${user.value.lastName}">Last Name</span></td>
+            <td><span th:text="${user.value.email}">Last Name</span></td>
             <td>
                 <form action="#" th:action="@{edit}" method="post">
                     <button th:type="submit" class="btn btn-success" th:name="editUserId" th:value="${user.value.id}">Edit</button>
@@ -55,6 +44,7 @@
     <a th:href="@{/order/list}" class="btn btn-success">Orders List</a>
 
 
+</div>
 </div>
 
 </body>
