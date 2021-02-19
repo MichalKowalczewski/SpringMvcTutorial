@@ -38,13 +38,13 @@
                 <td><span th:text="${user.value.firstName}">First Name</span></td>
                 <td><span th:text="${user.value.lastName}">Last Name</span></td>
                 <td>
-                    <form action="#" th:action="@{delete}" method="post">
-                        <button th:type="submit" class="btn btn-success" th:name="deleteButton" th:value="${user.value.id}">Delete</button>
+                    <form action="#" th:action="@{edit}" method="post">
+                        <button th:type="submit" class="btn btn-success" th:name="editUserId" th:value="${user.value.id}">Edit</button>
                     </form>
                 </td>
                 <td>
-                    <form action="#" th:action="@{edit}" method="post">
-                        <button th:type="submit" class="btn btn-success" th:name="editUserId" th:value="${user.value.id}">Delete</button>
+                    <form action="#" th:action="@{delete}" method="post">
+                        <button th:type="submit" class="btn btn-success" th:name="deleteButton" th:value="${user.value.id}">Delete</button>
                     </form>
                 </td>
             </tr>
