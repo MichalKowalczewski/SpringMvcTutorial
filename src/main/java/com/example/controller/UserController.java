@@ -56,18 +56,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String postAction(User user){
-        System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
-        userDAO.addUser(user);
-        return "index";
-
+    public String postAction(@Valid User user, BindingResult result){
+        if (result.hasErrors()){
+            return "post";
+        } else {
+            System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
+            userDAO.addUser(user);
+            return "index";
+        }
     }
 
     @PostMapping("/edited")
-    public String postEdit(User user, Model model){
-        System.out.println("Edited User: " + user.getFirstName() + " " + user.getLastName());
-        userDAO.getUsers().put(user.getId(), user);
-        return "redirect:main";
+    public String postEdit(@Valid User user, BindingResult result){
+        if (result.hasErrors()){
+            return "post";
+        } else {
+            System.out.println("Edited User: " + user.getFirstName() + " " + user.getLastName());
+            userDAO.getUsers().put(user.getId(), user);
+            return "redirect:main";
+        }
     }
 
 }

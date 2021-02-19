@@ -26,8 +26,10 @@
    <div class="form-group">
       <input type="hidden" th:field="${user.id}"/>
       <input class="form-control" placeholder="Provide First Name" th:field="${user.firstName}" />
+      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger">First Name error</span>
       <br/>
       <input class="form-control" placeholder="Provide Last Name" th:field="${user.lastName}" />
+      <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger">Last Name error</span>
       <br/>
       <input type="submit" class="btn btn-success" id="submitButton" th:value="Save">
 

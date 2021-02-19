@@ -8,8 +8,12 @@ public class User {
 
     private int id;
 
+    @NotEmpty
+    @Size(min = 3)
     private String firstName;
 
+    @NotEmpty
+    @Size(min = 3)
     private String lastName;
 
     public User() {
