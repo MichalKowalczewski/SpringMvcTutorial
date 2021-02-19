@@ -32,7 +32,7 @@
             <td><span th:text="${user.firstName}">First Name</span></td>
             <td><span th:text="${user.lastName}">Last Name</span></td>
         </tr>
-        <tr th:unless="${user == null}" th:each="user : ${users}" th:object="${user}">
+        <tr th:unless="${user == null}" th:each="user : ${users}" th:object="${user.value}">
             <td><span th:text="*{firstName}">First Name</span></td>
             <td><span th:text="*{lastName}">Last Name</span></td>
         </tr>
