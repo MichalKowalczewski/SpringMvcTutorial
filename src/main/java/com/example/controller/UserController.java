@@ -65,9 +65,6 @@ public class UserController {
     public String postEdit(User user, Model model){
         System.out.println("Edited User: " + user.getFirstName() + " " + user.getLastName());
         userDAO.getUsers().put(user.getId(), user);
-        model.addAttribute("user", null);
-        model.addAttribute("users", userDAO.getUsers());
-        return "index";
-
+        return "redirect:main";
     }
 }
