@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -26,6 +24,12 @@ public class UserController {
         return "index";
     }
 
+    @RequestMapping("/main_param")
+    public String mainPageParamId(@RequestParam("id") int id, Model model){
+        model.addAttribute("user", userDAO.getUserById(id));
+        return "index";
+    }
+
     @RequestMapping("/main")
     public String mainPage(Model model){
         model.addAttribute("users", userDAO.getUsers());
@@ -38,10 +42,32 @@ public class UserController {
         return "post";
     }
 
-    @RequestMapping(value = "/go", method = RequestMethod.POST)
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam("deleteButton") int id, Model model) {
+        userDAO.removeUserById(id);
+        model.addAttribute("users", userDAO.getUsers());
+        return "index";
+    }
+
+    @PostMapping("/edit")
+    public String editUser(@RequestParam("editUserId") int id, Model model) {
+        model.addAttribute("user", userDAO.getUserById(id));
+        return "post";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String postAction(User user){
-            System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
-            return "index";
+        System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
+        userDAO.addUser(user);
+        return "index";
 
     }
+
+    @PostMapping("/edited")
+    public String postEdit(User user, Model model){
+        System.out.println("Edited User: " + user.getFirstName() + " " + user.getLastName());
+        userDAO.getUsers().put(user.getId(), user);
+        return "redirect:main";
+    }
+
 }
