@@ -26,7 +26,13 @@ public class UserDAO {
         return users;
     }
 
-    public User getUserById(int id){
-        return users.get(id);
+    public void addUser(User user) {
+        users.put(user.getId() ,user);
+    }
+
+    public User getUserById(int id) {return users.get(id);}
+
+    public void removeUserById(int id) {
+        users.remove(id);
     }
 }
