@@ -38,8 +38,8 @@ public class OrderController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String postAction(Order order, @RequestParam("id") int id){
         order.setUser(userDAO.getUserById(id));
-        order.setId(orderDAO.getOrders().size());
-
+        order.setId(orderDAO.getOrders().size()+1);
+        orderDAO.addOrder(order);
         System.out.println("Added order "+ order.getId() + " " +order.getTitle() + " "+order.getPrice()+" "+order.getUser().getFirstName()+" "+order.getUser().getLastName());
         return "redirect:list";
 
