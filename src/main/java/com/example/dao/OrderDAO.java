@@ -34,6 +34,8 @@ public class OrderDAO {
     }
 
     public void addOrder(Order order) {
+        int id = orders.keySet().stream().min((o1, o2) -> o2 - o1).orElse(0)+1;
+        order.setId(id);
         orders.put(order.getId(), order);
     }
 }
