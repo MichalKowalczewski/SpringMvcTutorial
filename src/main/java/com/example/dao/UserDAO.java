@@ -27,6 +27,8 @@ public class UserDAO {
     }
 
     public void addUser(User user) {
+        int id = users.keySet().stream().min((o1, o2) -> o2 - o1).orElse(0)+1;
+        user.setId(id);
         users.put(user.getId(), user);
     }
 

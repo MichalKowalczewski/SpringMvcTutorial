@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/sda")
+//Domyślnie singleton
 //@SessionScope -  bean tworzony raz na sesje użytkownika (jeżeli otworzymy aplikacje np w innej przeglądarce, to zobaczymy w konsoli inicjalizacje)
-//@RequestScoped - przy każdym odwołaniu się do beana jest tworzony nowy bean
+@RequestScope //- przy każdym odwołaniu się do beana jest tworzony nowy bean
 //@ApplicationScoped - bean tworzony raz na całe życie aplikacji - używany może być np do połączeń z bazą danych
 public class UserController {
 
@@ -66,7 +69,7 @@ public class UserController {
     public String postAction(User user){
             System.out.println("Added User: " + user.getFirstName() + " " + user.getLastName());
             userDAO.addUser(user);
-            return "index";
+            return "redirect:main";
 
     }
 }
